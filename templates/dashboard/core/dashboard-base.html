@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  {% include 'dashboard/core/partials/header.html' %}
+  {% include 'dashboard/core/partials/sidebar.html' %}
+  {% block dashboard_content %}
+    Replace this
+  {% endblock %}
+{% endblock %}

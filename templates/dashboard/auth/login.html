@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="section">
+    <div class="container w-25">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="section-title text-center mb-5 pb-2">
+            <h3>Welcome back 👋</h3>
+            <p>Sign in to continue to Wallet</p>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <form action="#!">
+            <div class="form-group mb-4 pb-2">
+              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+              <input type="email" class="form-control shadow-none" id="contact_email" />
+            </div>
+
+            <div class="form-group mb-4 pb-2">
+              <label for="exampleFormControlInput1" class="form-label">Password</label>
+              <input type="password" class="form-control shadow-none" id="contact_name" />
+            </div>
+
+            <button class="btn btn-primary w-100" type="submit">Login</button>
+          </form>
+
+          <a href="{% url 'reset_password' %}" class="mt-4 text-center d-block">Forgot Password</a>
+          <p class="mt-4 text-center">
+            Don't have an account? <a href="{% url 'sign-up' %}">Register</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
