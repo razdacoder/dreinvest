@@ -1,7 +1,7 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{% url 'dashboard_home' %}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
@@ -9,7 +9,7 @@
     <!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="users-profile.html">
+      <a class="nav-link" href="{% url 'deposit' %}">
         <i class="bi bi-upload"></i>
         <span>Deposit</span>
       </a>
@@ -17,7 +17,7 @@
     <!-- End Profile Page Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="pages-faq.html">
+      <a class="nav-link" href="{% url 'withdraw' %}">
         <i class="bi bi-download"></i>
         <span>Withdrawal</span>
       </a>
@@ -25,9 +25,9 @@
     <!-- End F.A.Q Page Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" href="pages-contact.html">
+      <a class="nav-link" href="{% url 'investment' %}">
         <i class="bi bi-box-seam"></i>
-        <span>Tading Plan</span>
+        <span>Trading Plan</span>
       </a>
     </li>
     <!-- End Contact Page Nav -->

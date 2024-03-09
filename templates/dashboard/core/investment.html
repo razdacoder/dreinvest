@@ -1,0 +1,11 @@
+{% extends 'dashboard/core/dashboard-base.html' %}
+
+{% block dashboard_content %}
+  <main id="main" class="main">
+    <div class="d-flex align-items-center justify-content-center flex-column m-4">
+      <h5>No Active investment</h5>
+      <p>You currently do not have an active investment, kindly click the button below to get started.</p>
+      <a href="{% url 'investment_plan' %}" class="btn btn-primary">Start Investing</a>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'dashboard/core/dashboard-base.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+  <main id="main" class="main">
+    <section class="container-fluid mt-4">
+      <h4>WITHDRAW</h4>
+      <a href="" class="btn btn-primary">Add your wallet</a>
+      <div class="col-12 mt-3">
+        <div class="row gap-3 justify-content-between">
+          <div class="card col-3">
+            <div class="card-body">
+              <img src="{% static 'images/bitcoin-btc-logo.png' %}" class="mx-auto" width="100px" height="100px" />
+              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Bitcoin</a>
+            </div>
+          </div>
+          <div class="card col-3">
+            <div class="card-body">
+              <img src="{% static 'images/ethereum-eth-logo.png' %}" class="mx-auto" width="100px" height="100px" />
+              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Ethereum</a>
+            </div>
+          </div>
+          <div class="card col-3">
+            <div class="card-body">
+              <img src="{% static 'images/tether-usdt-logo.png' %}" class="mx-auto" width="100px" height="100px" />
+              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via USDT</a>
+            </div>
+          </div>
+          <div class="card col-3">
+            <div class="card-body">
+              <img src="{% static 'images/litecoin-ltc-logo.png' %}" class="mx-auto" width="100px" height="100px" />
+              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Litecoin</a>
+            </div>
+          </div>
+          <div class="card col-3">
+            <div class="card-body">
+              <img src="{% static 'images/usd-coin-usdc-logo.png' %}" class="mx-auto" width="100px" height="100px" />
+              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via USDC</a>
+            </div>
+          </div>
+          <div class="card col-3">
+            <div class="card-body">
+              <img src="{% static 'images/dogecoin-doge-logo.png' %}" class="mx-auto" width="100px" height="100px" />
+              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Dogecoin</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Reports -->
+    </section>
+  </main>
+{% endblock %}

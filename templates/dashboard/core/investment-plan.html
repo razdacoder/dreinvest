@@ -1,0 +1,88 @@
+{% extends 'dashboard/core/dashboard-base.html' %}
+
+{% block dashboard_content %}
+  <main id="main" class="main">
+    <div class="d-flex align-items-center justify-content-center flex-column m-4">
+      <h5>Get started with your investment.</h5>
+      <p>An investment has never been easy but with Umargins, we have made it simple with mega returns</p>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <div class="card p-3">
+          <div class="mb-3">
+            <label for="form-label">Investment Plan</label>
+            <select class="p-3 w-100" aria-label="Default select example">
+              <option class="text-[#252525]" selected>Select plan</option>
+              <option value="basic">Basic plan</option>
+              <option value="standard">Standard Plan</option>
+              <option value="professional">Professional</option>
+              <option value="expert">Expert</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="form-label">Investment Plan</label>
+            <input type="number" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label for="form-label">Choose asset</label>
+            <select class="p-3 w-100" aria-label="Default select example">
+              <option class="text-[#252525]" selected>Select asset</option>
+              <option value="btc">Bitcoin</option>
+              <option value="eth">Ethereum</option>
+              <option value="usdt">USDT</option>
+              <option value="ltc">Litecoin</option>
+              <option value="usdc">USDC</option>
+              <option value="doge">Dogecoin</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h6 class="card-title p-3">Checkout</h6>
+          <div class="d-flex justify-content-between p-3">
+            <div>
+              <span>Investment Plan</span>
+              <span class="text-primary d-block">Basic Plan</span>
+            </div>
+            <div>
+              <span>Duration</span>
+              <span class="text-primary d-block">14 Days</span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between p-3">
+            <div>
+              <span>Minimum Deposit</span>
+              <span class="text-primary d-block">Basic Plan</span>
+            </div>
+            <div>
+              <span>Maximum Deposit</span>
+              <span class="text-primary d-block">14 Days</span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between p-3">
+            <div>
+              <span>ROI</span>
+              <span class="text-primary d-block">Basic Plan</span>
+            </div>
+            <div>
+              <span>Return Cycle</span>
+              <span class="text-primary d-block">14 Days</span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between p-3">
+            <span>Asset:</span>
+            <span class="text-primary d-block">14 Days</span>
+          </div>
+          <div class="d-flex justify-content-between p-3">
+            <span>Amount to Invest:</span>
+            <span class="text-primary d-block">14 Days</span>
+          </div>
+          <div class="p-3">
+            <a href="" class="btn btn-primary">Confirm & Invest</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

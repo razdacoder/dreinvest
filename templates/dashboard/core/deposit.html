@@ -1,5 +1,78 @@
 {% extends 'dashboard/core/dashboard-base.html' %}
+{% load static %}
 
 {% block dashboard_content %}
-  <main id="main" class="main">Helo</main>
+  <main id="main" class="main">
+    <section class="container-fluid mt-4">
+      <h4>DEPOSIT</h4>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Enter Amount" />
+              <label for="floatingInput">Enter Amount</label>
+            </div>
+            <div class="row gap-3 justify-content-between mx-3">
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/bitcoin-btc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Bitcoin</span>
+                  </div>
+                </label>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="BTC" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/ethereum-eth-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Ethereum</span>
+                  </div>
+                </label>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="ETH" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/tether-usdt-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDT</span>
+                  </div>
+                </label>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="USDT" checked />
+              </div>
+            </div>
+            <div class="row justify-content-between mt-3 gap-3 mx-3">
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/litecoin-ltc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Litecoin</span>
+                  </div>
+                </label>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="LTC" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/usd-coin-usdc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDC</span>
+                  </div>
+                </label>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="USDC" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/dogecoin-doge-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Dogecoin</span>
+                  </div>
+                </label>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="DOGE" checked />
+              </div>
+            </div>
+            <a href="" class="btn btn-primary mt-3 d-block">Proceed to payment</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Reports -->
+    </section>
+  </main>
 {% endblock %}

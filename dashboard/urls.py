@@ -11,4 +11,8 @@ urlpatterns = [
         name="reset_password_confirm",
     ),
     path("", views.home, name="dashboard_home"),
+    path("deposit/", views.deposit, name="deposit"),
+    path("withdraw/", views.withdraw, name="withdraw"),
+    path("investment/", views.investment, name="investment"),
+    path("investment-plan/", views.investment_plan, name="investment_plan"),
 ]
