@@ -12,7 +12,7 @@
               <input type="text" class="form-control" id="floatingInput" placeholder="Enter Amount" />
               <label for="floatingInput">Enter Amount</label>
             </div>
-            <div class="row gap-3 justify-content-between mx-3">
+            <div class="row gap-3 justify-content-between mx-2">
               <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
                 <label class="form-check-label" for="exampleRadios1">
                   <div class="d-flex gap-3 align-items-center">
@@ -40,7 +40,7 @@
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="USDT" checked />
               </div>
             </div>
-            <div class="row justify-content-between mt-3 gap-3 mx-3">
+            <div class="row justify-content-between mt-3 gap-3 mx-2">
               <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
                 <label class="form-check-label" for="exampleRadios1">
                   <div class="d-flex gap-3 align-items-center">
@@ -68,11 +68,46 @@
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="DOGE" checked />
               </div>
             </div>
-            <a href="" class="btn btn-primary mt-3 d-block">Proceed to payment</a>
+            <button type="button" class="btn btn-primary w-100 mt-4" data-bs-toggle="modal" data-bs-target="#verticalycentered">Proceed to payment</button>
+            <div class="modal fade" id="verticalycentered" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Deposit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>You are to make deposit of $4000 into the provided address</p>
+                    <div class="input-group mb-3">
+                      <input id="copy-text" type="text" class="form-control" value="1Bn97DajuPkj6dkSvgW97tFwSuzbQJwkp" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+
+                      <button id="copy-btn" class="input-group-text px-3 text-black" id="basic-addon2"><i class="bi bi-clipboard"></i></button>
+
+                      <a id="paid-btn" style="display: none;" class="btn btn-primary px-3 w-100 mt-4" id="basic-addon2">I have paid</a>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <!-- End Reports -->
     </section>
   </main>
+
+  <script>
+    const copyBtn = document.querySelector('#copy-btn')
+    const paidBtn = document.querySelector('#paid-btn')
+    const copyInput = document.querySelector('#copy-text')
+    copyBtn.addEventListener('click', (e) => {
+      window.navigator.clipboard.writeText(copyInput.value)
+      copyBtn.classList.remove('text-black')
+      copyBtn.classList.add('text-success')
+      paidBtn.style.display = 'block'
+    })
+  </script>
 {% endblock %}

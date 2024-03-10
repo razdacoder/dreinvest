@@ -4,6 +4,7 @@ from dashboard import views
 urlpatterns = [
     path("auth/sign-up/", views.sign_up, name="sign-up"),
     path("auth/login/", views.login_view, name="login"),
+    path("auth/logout/", views.logout_view, name="logout"),
     path("auth/reset_password/", views.reset_password, name="reset_password"),
     path(
         "auth/reset_password_confirm/<str:uid>/<str:token>/",

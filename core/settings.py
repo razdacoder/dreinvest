@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     "dashboard",
 ]
 
+AUTH_USER_MODEL = "dashboard.User"
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
