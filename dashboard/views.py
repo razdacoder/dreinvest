@@ -37,3 +37,7 @@ def investment(request):
 
 def investment_plan(request):
     return render(request, template_name="dashboard/core/investment-plan.html")
+
+
+def transactions(request):
+    return render(request, template_name="dashboard/core/transactions.html")
