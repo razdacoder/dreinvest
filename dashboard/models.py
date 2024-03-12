@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class UserManager(BaseUserManager):
@@ -77,12 +79,12 @@ class User(AbstractBaseUser):
 class Transaction(models.Model):
     TRANSACTION_TYPE = (("deposit", "Deposit"), ("withdraw", "Withdraw"))
     ASSET_TYPE = (
-        ("btc", "Bitcoin"),
-        ("eth", "Ethereum"),
-        ("usdt", "USDT"),
-        ("ltc", "Litecoin"),
-        ("usdc", "USDC"),
-        ("doge", "Dogecoin"),
+        ("BTC", "Bitcoin"),
+        ("ETH", "Ethereum"),
+        ("USDT", "USDT"),
+        ("LTC", "Litecoin"),
+        ("USDC", "USDC"),
+        ("DOGE", "Dogecoin"),
     )
 
     STATUS = (
@@ -94,5 +96,19 @@ class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.FloatField()
     asset = models.CharField(max_length=255, choices=ASSET_TYPE)
-    status = models.CharField(max_length=255, choices=STATUS)
+    status = models.CharField(max_length=255, choices=STATUS, default="pending")
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Proof(models.Model):
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="proofs/")
+
+
+@receiver(post_save, sender=Transaction)
+def status_changed(sender, instance, created, **kwargs):
+    if not created:
+        obj = Transaction.objects.get(pk=instance.pk)
+        if obj.status == "sucessfull":
+            obj.user.wallet_balance += obj.amount
+            obj.user.save()

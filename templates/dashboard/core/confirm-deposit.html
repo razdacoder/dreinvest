@@ -1,0 +1,57 @@
+{% extends 'dashboard/core/dashboard-base.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+  <main id="main" class="main">
+    <section class="container-fluid mt-4">
+      <h4>Upload</h4>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <form method="post" class="mt-3 px-3">
+              {% csrf_token %}
+              <p class="text-secondary">If you have made transfer of ${{ transaction.amount }} worth of {{ transaction.asset }} to the provided wallet address, kindly upload your proof of payment here.</p>
+
+              <label for="fileInput" style="border: 1px dashed gainsboro; flex-direction: column;" class="py-4 w-100 mt-4 h-25 d-flex justify-content-center align-items-center">
+                <i class="bi bi-cloud-arrow-up-fill" style="font-size: 4rem;"></i>
+                Click to uplaod
+              </label>
+              <input type="file" name="file" id="fileInput" style="display: none;" />
+              <button type="submit" class="btn btn-primary mt-4">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- End Reports -->
+    </section>
+  </main>
+
+  <script>
+    const copyBtn = document.querySelector('#copy-btn')
+    const amount = document.querySelector('#amount')
+    const form = document.querySelector('#form')
+    const modalBtn = document.querySelector('#modalBtn')
+    const paidBtn = document.querySelector('#paid-btn')
+    const copyInput = document.querySelector('#copy-text')
+    copyBtn.addEventListener('click', (e) => {
+      window.navigator.clipboard.writeText(copyInput.value)
+      copyBtn.classList.remove('text-black')
+      copyBtn.classList.add('text-success')
+      paidBtn.style.display = 'block'
+    })
+    
+    form.addEventListener('input', () => {
+      modalBtn.disabled = !form.checkValidity() || !isOneRadioButtonChecked()
+    })
+    
+    function isOneRadioButtonChecked() {
+      const radios = document.getElementsByName('asset')
+      for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return true
+        }
+      }
+      return false
+    }
+  </script>
+{% endblock %}

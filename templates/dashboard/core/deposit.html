@@ -8,90 +8,93 @@
       <div class="col-8">
         <div class="card">
           <div class="card-body">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Enter Amount" />
-              <label for="floatingInput">Enter Amount</label>
-            </div>
-            <div class="row gap-3 justify-content-between mx-2">
-              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
-                <label class="form-check-label" for="exampleRadios1">
-                  <div class="d-flex gap-3 align-items-center">
-                    <img width="30px" height="30px" src="{% static 'images/bitcoin-btc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Bitcoin</span>
-                  </div>
-                </label>
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="BTC" checked />
+            <form id="form" method="post">
+              {% csrf_token %}
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="amount" required id="amount" placeholder="Enter Amount" />
+                <label for="amount">Enter Amount</label>
               </div>
-
-              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
-                <label class="form-check-label" for="exampleRadios1">
-                  <div class="d-flex gap-3 align-items-center">
-                    <img width="30px" height="30px" src="{% static 'images/ethereum-eth-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Ethereum</span>
-                  </div>
-                </label>
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="ETH" checked />
-              </div>
-
-              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
-                <label class="form-check-label" for="exampleRadios1">
-                  <div class="d-flex gap-3 align-items-center">
-                    <img width="30px" height="30px" src="{% static 'images/tether-usdt-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDT</span>
-                  </div>
-                </label>
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="USDT" checked />
-              </div>
-            </div>
-            <div class="row justify-content-between mt-3 gap-3 mx-2">
-              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
-                <label class="form-check-label" for="exampleRadios1">
-                  <div class="d-flex gap-3 align-items-center">
-                    <img width="30px" height="30px" src="{% static 'images/litecoin-ltc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Litecoin</span>
-                  </div>
-                </label>
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="LTC" checked />
-              </div>
-
-              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
-                <label class="form-check-label" for="exampleRadios1">
-                  <div class="d-flex gap-3 align-items-center">
-                    <img width="30px" height="30px" src="{% static 'images/usd-coin-usdc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDC</span>
-                  </div>
-                </label>
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="USDC" checked />
-              </div>
-
-              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
-                <label class="form-check-label" for="exampleRadios1">
-                  <div class="d-flex gap-3 align-items-center">
-                    <img width="30px" height="30px" src="{% static 'images/dogecoin-doge-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Dogecoin</span>
-                  </div>
-                </label>
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="DOGE" checked />
-              </div>
-            </div>
-            <button type="button" class="btn btn-primary w-100 mt-4" data-bs-toggle="modal" data-bs-target="#verticalycentered">Proceed to payment</button>
-            <div class="modal fade" id="verticalycentered" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Deposit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>You are to make deposit of $4000 into the provided address</p>
-                    <div class="input-group mb-3">
-                      <input id="copy-text" type="text" class="form-control" value="1Bn97DajuPkj6dkSvgW97tFwSuzbQJwkp" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-
-                      <button id="copy-btn" class="input-group-text px-3 text-black" id="basic-addon2"><i class="bi bi-clipboard"></i></button>
-
-                      <a id="paid-btn" style="display: none;" class="btn btn-primary px-3 w-100 mt-4" id="basic-addon2">I have paid</a>
+              <div class="row gap-3 justify-content-between mx-2">
+                <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                  <label class="form-check-label" for="exampleRadios1">
+                    <div class="d-flex gap-3 align-items-center">
+                      <img width="30px" height="30px" src="{% static 'images/bitcoin-btc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Bitcoin</span>
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </label>
+                  <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="BTC" checked />
+                </div>
+
+                <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                  <label class="form-check-label" for="exampleRadios1">
+                    <div class="d-flex gap-3 align-items-center">
+                      <img width="30px" height="30px" src="{% static 'images/ethereum-eth-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Ethereum</span>
+                    </div>
+                  </label>
+                  <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="ETH" checked />
+                </div>
+
+                <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                  <label class="form-check-label" for="exampleRadios1">
+                    <div class="d-flex gap-3 align-items-center">
+                      <img width="30px" height="30px" src="{% static 'images/tether-usdt-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDT</span>
+                    </div>
+                  </label>
+                  <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="USDT" checked />
+                </div>
+              </div>
+              <div class="row justify-content-between mt-3 gap-3 mx-2">
+                <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                  <label class="form-check-label" for="exampleRadios1">
+                    <div class="d-flex gap-3 align-items-center">
+                      <img width="30px" height="30px" src="{% static 'images/litecoin-ltc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Litecoin</span>
+                    </div>
+                  </label>
+                  <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="LTC" checked />
+                </div>
+
+                <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                  <label class="form-check-label" for="exampleRadios1">
+                    <div class="d-flex gap-3 align-items-center">
+                      <img width="30px" height="30px" src="{% static 'images/usd-coin-usdc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDC</span>
+                    </div>
+                  </label>
+                  <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="USDC" checked />
+                </div>
+
+                <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                  <label class="form-check-label" for="exampleRadios1">
+                    <div class="d-flex gap-3 align-items-center">
+                      <img width="30px" height="30px" src="{% static 'images/dogecoin-doge-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Dogecoin</span>
+                    </div>
+                  </label>
+                  <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="DOGE" checked />
+                </div>
+              </div>
+              <button disabled id="modalBtn" type="button" class="btn btn-primary w-100 mt-4" data-bs-toggle="modal" data-bs-target="#verticalycentered">Proceed to payment</button>
+              <div class="modal fade" id="verticalycentered" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Deposit</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>You are to make deposit of $4000 into the provided address</p>
+                      <div class="input-group mb-3">
+                        <input id="copy-text" type="text" class="form-control" value="1Bn97DajuPkj6dkSvgW97tFwSuzbQJwkp" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+
+                        <button type="button" id="copy-btn" class="input-group-text px-3 text-black" id="basic-addon2"><i class="bi bi-clipboard"></i></button>
+
+                        <button type="submit" id="paid-btn" style="display: none;" class="btn btn-primary px-3 w-100 mt-4" id="basic-addon2">I have paid</button>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -101,6 +104,9 @@
 
   <script>
     const copyBtn = document.querySelector('#copy-btn')
+    const amount = document.querySelector('#amount')
+    const form = document.querySelector('#form')
+    const modalBtn = document.querySelector('#modalBtn')
     const paidBtn = document.querySelector('#paid-btn')
     const copyInput = document.querySelector('#copy-text')
     copyBtn.addEventListener('click', (e) => {
@@ -109,5 +115,19 @@
       copyBtn.classList.add('text-success')
       paidBtn.style.display = 'block'
     })
+    
+    form.addEventListener('input', () => {
+      modalBtn.disabled = !form.checkValidity() || !isOneRadioButtonChecked()
+    })
+    
+    function isOneRadioButtonChecked() {
+      const radios = document.getElementsByName('asset')
+      for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return true
+        }
+      }
+      return false
+    }
   </script>
 {% endblock %}

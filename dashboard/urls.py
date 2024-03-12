@@ -13,6 +13,7 @@ urlpatterns = [
     ),
     path("", views.home, name="dashboard_home"),
     path("deposit/", views.deposit, name="deposit"),
+    path("confirm-deposit", views.confirm_deposit, name="confirm-deposit"),
     path("withdraw/", views.withdraw, name="withdraw"),
     path("investment/", views.investment, name="investment"),
     path("investment-plan/", views.investment_plan, name="investment_plan"),

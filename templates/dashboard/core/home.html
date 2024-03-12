@@ -6,6 +6,7 @@
       <div class="row">
         <!-- Left side columns -->
         <div class="col-lg-12">
+          {% include 'dashboard/partials/alerts.html' %}
           <div class="row">
             <!-- Sales Card -->
             <div class="col-md-6">
@@ -22,18 +23,18 @@
                   </div>
 
                   <div class="d-flex justify-content-around align-items-center mt-4">
-                    <div class="text-center">
+                    <a href="{% url 'deposit' %}" class="text-center">
                       <span class="bg-white text-primary p-2 rounded"><i class="bi bi-plus"></i></span>
-                      <span class="d-block mt-2">Top up Balance</span>
-                    </div>
-                    <div class="text-center">
+                      <span class="d-block mt-2 text-white">Top up Balance</span>
+                    </a>
+                    <a href="{% url 'investment' %}" class="text-center">
                       <span class="bg-white text-primary p-2 rounded"><i class="bi bi-activity"></i></span>
-                      <span class="d-block mt-2">Invest Now</span>
-                    </div>
-                    <div class="text-center">
+                      <span class="d-block mt-2 text-white">Invest Now</span>
+                    </a>
+                    <a href="{% url 'withdraw' %}" class="text-center">
                       <span class="bg-white text-primary p-2 rounded"><i class="bi bi-arrow-left-right"></i></span>
-                      <span class="d-block mt-2">Withdraw</span>
-                    </div>
+                      <span class="d-block mt-2 text-white">Withdraw</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -46,7 +47,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Refer & Earn</h5>
                   <p>Earn upto $100 when your friend join and invest with us.</p>
-                  <a href="#" class="btn btn-primary">Get Started</a>
+                  <a href="#" class="btn btn-primary">Coming soon...</a>
                 </div>
               </div>
             </div>
@@ -90,8 +91,23 @@
             </div>
           </div>
         </div>
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">Total Deposits</h5>
 
-        <div class="col-xxl-4 col-xl-12">
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-currency-dollar"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>${{ total_deposits }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% comment %} <div class="col-xxl-4 col-xl-12">
           <div class="card info-card customers-card">
             <div class="card-body">
               <h5 class="card-title">Total Referrals</h5>
@@ -106,26 +122,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
       <div class="row">
-        <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
-            <div class="card-body">
-              <h5 class="card-title">Total Deposits</h5>
-
-              <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-currency-dollar"></i>
-                </div>
-                <div class="ps-3">
-                  <h6>$0.00</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="col-xxl-4 col-md-6">
           <div class="card info-card revenue-card">
             <div class="card-body">
@@ -136,7 +135,7 @@
                   <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>$0.00</h6>
+                  <h6>${{ total_withdraw }}</h6>
                 </div>
               </div>
             </div>

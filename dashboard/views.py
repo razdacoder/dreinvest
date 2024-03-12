@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import User
+from .models import User, Transaction, Proof
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -64,11 +65,38 @@ def reset_password_confirm(request, uid, token):
 
 @login_required(redirect_field_name="login")
 def home(request):
-    return render(request, template_name="dashboard/core/home.html")
+    total_deposits = (
+        Transaction.objects.filter(user=request.user, type="deposit")
+        .aggregate(total_amount=Sum("amount"))
+        .get("total_amount")
+        or 0
+    )
+
+    total_withdraw = (
+        Transaction.objects.filter(user=request.user, type="withdraw")
+        .aggregate(total_amount=Sum("amount"))
+        .get("total_amount")
+        or 0
+    )
+
+    context = {"total_deposits": total_deposits, "total_withdraw": total_withdraw}
+
+    return render(request, template_name="dashboard/core/home.html", context=context)
 
 
 @login_required(redirect_field_name="login")
 def deposit(request):
+    if request.method == "POST":
+        amount = request.POST.get("amount")
+        asset = request.POST.get("asset")
+        transaction = Transaction.objects.create(
+            type="deposit",
+            user=request.user,
+            amount=float(amount),
+            asset=asset,
+        )
+        transaction.save()
+        return redirect("confirm-deposit")
     return render(request, template_name="dashboard/core/deposit.html")
 
 
@@ -87,5 +115,26 @@ def investment_plan(request):
     return render(request, template_name="dashboard/core/investment-plan.html")
 
 
+@login_required(redirect_field_name="login")
 def transactions(request):
     return render(request, template_name="dashboard/core/transactions.html")
+
+
+@login_required(redirect_field_name="login")
+def confirm_deposit(request):
+    transaction = (
+        Transaction.objects.filter(user=request.user).order_by("-created_at").first()
+    )
+    if request.method == "POST":
+        file = request.FILES.get("file")
+        proof = Proof.objects.create(transaction=transaction, file=file)
+        proof.save()
+        messages.success(
+            request, "Deposit succssfull!! We will verify your payment soon"
+        )
+        return redirect("dashboard_home")
+    return render(
+        request,
+        template_name="dashboard/core/confirm-deposit.html",
+        context={"transaction": transaction},
+    )
