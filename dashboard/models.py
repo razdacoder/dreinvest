@@ -105,6 +105,30 @@ class Proof(models.Model):
     file = models.FileField(upload_to="proofs/")
 
 
+class Investment(models.Model):
+    INVESTMENT_PLAN = (
+        ("basic", "Basic Plan"),
+        ("standard", "Standard Plan"),
+        ("professionl", "Professional Plan"),
+        ("expert", "Expert Plan"),
+        ("executive", "Executice Plan"),
+    )
+
+    ASSET_TYPE = (
+        ("BTC", "Bitcoin"),
+        ("ETH", "Ethereum"),
+        ("USDT", "USDT"),
+        ("LTC", "Litecoin"),
+        ("USDC", "USDC"),
+        ("DOGE", "Dogecoin"),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    plan = models.CharField(max_length=255, choices=INVESTMENT_PLAN)
+    asset = models.CharField(max_length=255, choices=ASSET_TYPE)
+    amount = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 @receiver(post_save, sender=Transaction)
 def status_changed(sender, instance, created, **kwargs):
     if not created:

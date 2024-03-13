@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import User, Transaction, Proof
+from .models import User, Transaction, Proof, Investment
 from django.db.models import Sum
 
 # Create your views here.
@@ -107,17 +107,85 @@ def withdraw(request):
 
 @login_required(redirect_field_name="login")
 def investment(request):
-    return render(request, template_name="dashboard/core/investment.html")
+    investments = Investment.objects.filter(user=request.user)
+    return render(
+        request,
+        template_name="dashboard/core/investment.html",
+        context={"investments": investments},
+    )
 
 
 @login_required(redirect_field_name="login")
 def investment_plan(request):
-    return render(request, template_name="dashboard/core/investment-plan.html")
+    plans = [
+        {
+            "key": "basic",
+            "name": "Basic Plan",
+            "minimum": 500,
+            "maximum": 999,
+            "roi": 20,
+            "duration": 14,
+        },
+        {
+            "key": "standard",
+            "name": "Standard Plan",
+            "minimum": 1000,
+            "maximum": 4999,
+            "roi": 20,
+            "duration": 14,
+        },
+        {
+            "key": "professional",
+            "name": "Professional Plan",
+            "minimum": 5000,
+            "maximum": 9990,
+            "roi": 20,
+            "duration": 14,
+        },
+        {
+            "key": "expert",
+            "name": "Expert Plan",
+            "minimum": 10000,
+            "maximum": 35999,
+            "roi": 20,
+            "duration": 14,
+        },
+        {
+            "key": "executive",
+            "name": "Executive Plan",
+            "minimum": 50000,
+            "maximum": 100000,
+            "roi": 20,
+            "duration": 14,
+        },
+    ]
+    if request.method == "POST":
+        plan = request.POST.get("plan")
+        asset = request.POST.get("asset")
+        amount = float(request.POST.get("amount"))
+        if amount > request.user.wallet_balance:
+            return redirect("deposit")
+        investment = Investment.objects.create(
+            user=request.user, plan=plan, amount=amount, asset=asset
+        )
+        investment.save()
+        return redirect("investment")
+    return render(
+        request,
+        template_name="dashboard/core/investment-plan.html",
+        context={"plans": plans},
+    )
 
 
 @login_required(redirect_field_name="login")
 def transactions(request):
-    return render(request, template_name="dashboard/core/transactions.html")
+    deposits = Transaction.objects.filter(user=request.user, type="deposit")
+    withdrawals = Transaction.objects.filter(user=request.user, type="withdraw")
+    return render(
+        request,
+        template_name="dashboard/core/transactions.html",
+        context={"deposits": deposits, "withdrawals": withdrawals},
+    )
 
 
 @login_required(redirect_field_name="login")

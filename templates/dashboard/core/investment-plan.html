@@ -9,78 +9,38 @@
     <div class="row">
       <div class="col-8">
         <div class="card p-3">
-          <div class="mb-3">
-            <label for="form-label">Investment Plan</label>
-            <select class="p-3 w-100" aria-label="Default select example">
-              <option class="text-[#252525]" selected>Select plan</option>
-              <option value="basic">Basic plan</option>
-              <option value="standard">Standard Plan</option>
-              <option value="professional">Professional</option>
-              <option value="expert">Expert</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="form-label">Investment Plan</label>
-            <input type="number" class="form-control" />
-          </div>
-          <div class="mb-3">
-            <label for="form-label">Choose asset</label>
-            <select class="p-3 w-100" aria-label="Default select example">
-              <option class="text-[#252525]" selected>Select asset</option>
-              <option value="btc">Bitcoin</option>
-              <option value="eth">Ethereum</option>
-              <option value="usdt">USDT</option>
-              <option value="ltc">Litecoin</option>
-              <option value="usdc">USDC</option>
-              <option value="doge">Dogecoin</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card">
-          <h6 class="card-title p-3">Checkout</h6>
-          <div class="d-flex justify-content-between p-3">
-            <div>
-              <span>Investment Plan</span>
-              <span class="text-primary d-block">Basic Plan</span>
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="form-label">Investment Plan</label>
+              <select id="plan" name="plan" class="p-3 w-100" aria-label="Default select example">
+                <option class="text-[#252525]" selected>Select plan</option>
+                {% for plan in plans %}
+                  <option value="{{ plan.key }}">{{ plan.name }}</option>
+                {% endfor %}
+              </select>
             </div>
-            <div>
-              <span>Duration</span>
-              <span class="text-primary d-block">14 Days</span>
+            <div class="mb-3">
+              <label for="form-label">Enter Amount</label>
+              <input id="amount" name="amount" type="number" class="form-control" />
             </div>
-          </div>
-          <div class="d-flex justify-content-between p-3">
-            <div>
-              <span>Minimum Deposit</span>
-              <span class="text-primary d-block">Basic Plan</span>
+            <div class="mb-3">
+              <label for="form-label">Choose asset</label>
+              <select id="asset" name="asset" class="p-3 w-100" aria-label="Default select example">
+                <option class="text-[#252525]" selected>Select asset</option>
+                <option value="BTC">Bitcoin</option>
+                <option value="ETH">Ethereum</option>
+                <option value="USDT">USDT</option>
+                <option value="LTC">Litecoin</option>
+                <option value="USDC">USDC</option>
+                <option value="DOGE">Dogecoin</option>
+              </select>
             </div>
-            <div>
-              <span>Maximum Deposit</span>
-              <span class="text-primary d-block">14 Days</span>
+
+            <div class="p-3">
+              <button type="submit" class="btn btn-primary">Confirm & Invest</button>
             </div>
-          </div>
-          <div class="d-flex justify-content-between p-3">
-            <div>
-              <span>ROI</span>
-              <span class="text-primary d-block">Basic Plan</span>
-            </div>
-            <div>
-              <span>Return Cycle</span>
-              <span class="text-primary d-block">14 Days</span>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between p-3">
-            <span>Asset:</span>
-            <span class="text-primary d-block">14 Days</span>
-          </div>
-          <div class="d-flex justify-content-between p-3">
-            <span>Amount to Invest:</span>
-            <span class="text-primary d-block">14 Days</span>
-          </div>
-          <div class="p-3">
-            <a href="" class="btn btn-primary">Confirm & Invest</a>
-          </div>
+          </form>
         </div>
       </div>
     </div>

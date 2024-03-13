@@ -2,10 +2,33 @@
 
 {% block dashboard_content %}
   <main id="main" class="main">
-    <div class="d-flex align-items-center justify-content-center flex-column m-4">
-      <h5>No Active investment</h5>
-      <p>You currently do not have an active investment, kindly click the button below to get started.</p>
-      <a href="{% url 'investment_plan' %}" class="btn btn-primary">Start Investing</a>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Plan</th>
+          <th scope="col">Asset</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Start Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for investment in investments %}
+          <tr>
+            <th scope="row">{{ investment.id }}</th>
+            <td>{{ investment.get_plan_display }}</td>
+            <td>{{ investment.get_asset_display }}</td>
+            <td>${{ investment.amount }}</td>
+            <td>{{ investment.created_at }}</td>
+          </tr>
+          {% empty %}
+          <div class="d-flex align-items-center justify-content-center flex-column m-4">
+            <h5>No Active investment</h5>
+            <p>You currently do not have an active investment, kindly click the button below to get started.</p>
+            <a href="{% url 'investment_plan' %}" class="btn btn-primary">Start Investing</a>
+          </div>
+        {% endfor %}
+      </tbody>
+    </table>
   </main>
 {% endblock %}
