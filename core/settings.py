@@ -120,3 +120,13 @@ MEDIA_ROOT = BASE_DIR / "uploads"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+WALLETS = {
+    "BTC": "bc1qjxlamlxenscfkqqxpkdr4dyclc5cfcnvc8qj23",
+    "ETH": "0xAF35159dbf11D7c69be0165DaBA9dF3884C99e3c",
+    "USDT": "0xAF35159dbf11D7c69be0165DaBA9dF3884C99e3c",
+    "LTC": "ltc1qj5xzpl3ppr7yyydwtert3mkv589yvjyh4q7gmc",
+    "USDC": "fxghg",
+    "DOGE": "DQSfKRRs1wykWNjstq7kgbePi1VPnbFfKF",
+}

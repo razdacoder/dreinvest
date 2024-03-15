@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import User, Transaction, Proof, Investment
 from django.db.models import Sum
+from django.conf import settings
 
 # Create your views here.
 
@@ -97,11 +98,33 @@ def deposit(request):
         )
         transaction.save()
         return redirect("confirm-deposit")
-    return render(request, template_name="dashboard/core/deposit.html")
+    return render(
+        request,
+        template_name="dashboard/core/deposit.html",
+        context={"address": settings.WALLETS},
+    )
 
 
 @login_required(redirect_field_name="login")
 def withdraw(request):
+    if request.method == "POST":
+        amount = float(request.POST.get("amount"))
+        asset = request.POST.get("asset")
+
+        if amount > request.user.wallet_balance:
+            messages.error(request, "Insuficient balnace")
+            return redirect("withdraw")
+        if request.user.btc_wallet == None:
+            return redirect("addWallet")
+        transaction = Transaction.objects.create(
+            type="withdraw", asset=asset, amount=amount, user=request.user
+        )
+        transaction.save()
+        messages.success(
+            request,
+            f"Your withdrawal of ${amount} worth of asset {asset} will be transfered to you soon.",
+        )
+        return redirect("withdraw")
     return render(request, template_name="dashboard/core/withdraw.html")
 
 
@@ -206,3 +229,25 @@ def confirm_deposit(request):
         template_name="dashboard/core/confirm-deposit.html",
         context={"transaction": transaction},
     )
+
+
+@login_required(redirect_field_name="login")
+def add_wallet(request):
+    if request.method == "POST":
+        btc = request.POST.get("btc")
+        eth = request.POST.get("eth")
+        usdt = request.POST.get("usdt")
+        ltc = request.POST.get("ltc")
+        usdc = request.POST.get("usdc")
+        doge = request.POST.get("doge")
+        user = request.user
+        user.btc_wallet = btc
+        user.eth_wallet = eth
+        user.usdt_wallet = usdt
+        user.ltc_wallet = ltc
+        user.usdc_wallet = usdc
+        user.doge_wallet = doge
+        user.save()
+        messages.success(request, "Wallet Address Updated")
+        return redirect("addWallet")
+    return render(request, "dashboard/core/add_wallet.html")

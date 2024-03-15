@@ -4,46 +4,75 @@
 {% block dashboard_content %}
   <main id="main" class="main">
     <section class="container-fluid mt-4">
+      {% include 'dashboard/partials/alerts.html' %}
       <h4>WITHDRAW</h4>
-      <a href="" class="btn btn-primary">Add your wallet</a>
+      <a href="{% url 'addWallet' %}" class="btn btn-primary">Add your wallet</a>
       <div class="col-12 mt-3">
-        <div class="row gap-3 justify-content-between">
-          <div class="card col-3">
-            <div class="card-body">
-              <img src="{% static 'images/bitcoin-btc-logo.png' %}" class="mx-auto" width="100px" height="100px" />
-              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Bitcoin</a>
+        <div class="card-body">
+          <form id="form" method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="amount" required id="amount" placeholder="Enter Amount" />
+              <label for="amount">Enter Amount</label>
             </div>
-          </div>
-          <div class="card col-3">
-            <div class="card-body">
-              <img src="{% static 'images/ethereum-eth-logo.png' %}" class="mx-auto" width="100px" height="100px" />
-              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Ethereum</a>
+            <div class="row gap-3 justify-content-between mx-2">
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/bitcoin-btc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Bitcoin</span>
+                  </div>
+                </label>
+                <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="BTC" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/ethereum-eth-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Ethereum</span>
+                  </div>
+                </label>
+                <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="ETH" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/tether-usdt-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDT</span>
+                  </div>
+                </label>
+                <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="USDT" checked />
+              </div>
             </div>
-          </div>
-          <div class="card col-3">
-            <div class="card-body">
-              <img src="{% static 'images/tether-usdt-logo.png' %}" class="mx-auto" width="100px" height="100px" />
-              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via USDT</a>
+            <div class="row justify-content-between mt-3 gap-3 mx-2">
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/litecoin-ltc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Litecoin</span>
+                  </div>
+                </label>
+                <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="LTC" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/usd-coin-usdc-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">USDC</span>
+                  </div>
+                </label>
+                <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="USDC" checked />
+              </div>
+
+              <div class="form-check col-3 d-flex align-items-center justify-content-between shadow-sm p-3 border">
+                <label class="form-check-label" for="exampleRadios1">
+                  <div class="d-flex gap-3 align-items-center">
+                    <img width="30px" height="30px" src="{% static 'images/dogecoin-doge-logo.png' %}" alt="" /> <span class="ml-3 d-inline-block">Dogecoin</span>
+                  </div>
+                </label>
+                <input class="form-check-input" required type="radio" name="asset" id="exampleRadios1" value="DOGE" checked />
+              </div>
             </div>
-          </div>
-          <div class="card col-3">
-            <div class="card-body">
-              <img src="{% static 'images/litecoin-ltc-logo.png' %}" class="mx-auto" width="100px" height="100px" />
-              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Litecoin</a>
-            </div>
-          </div>
-          <div class="card col-3">
-            <div class="card-body">
-              <img src="{% static 'images/usd-coin-usdc-logo.png' %}" class="mx-auto" width="100px" height="100px" />
-              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via USDC</a>
-            </div>
-          </div>
-          <div class="card col-3">
-            <div class="card-body">
-              <img src="{% static 'images/dogecoin-doge-logo.png' %}" class="mx-auto" width="100px" height="100px" />
-              <a href="" class="btn btn-primary mt-3 d-block">Withdraw via Dogecoin</a>
-            </div>
-          </div>
+            <button type="submit" class="btn btn-primary w-100 mt-4" data-bs-toggle="modal" data-bs-target="#verticalycentered">Withdraw</button>
+          </form>
         </div>
       </div>
       <!-- End Reports -->

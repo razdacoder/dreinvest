@@ -1,0 +1,157 @@
+{% extends 'dashboard/core/dashboard-base.html' %}
+{% load static %}
+
+{% block dashboard_content %}
+  <main id="main" class="main">
+    <section class="container-fluid mt-4">
+      {% include 'dashboard/partials/alerts.html' %}
+      <h4>Add your wallet</h4>
+      <div class="col-8">
+        <button type="button" id="editBtn" class="px-3 btn btn-primary mb-4"><i class="bi bi-pencil-square"></i> Edit</button>
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="" class="d-block">Bitcoin Wallet</label>
+            <div style="display: flex;" class="gap-3 align-items-center texts">
+              <span class="d-block">
+                {% if request.user.btc_wallet %}
+                  {{ request.user.btc_wallet }}
+                {% else %}
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                {% endif %}
+              </span>
+            </div>
+
+            <div style="display: none;" class="gap-3 inputs">
+              <input required name="btc" type="text" id="" class="form-control w-75" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="d-block">Ethereum Wallet</label>
+            <div style="display: flex;" class="gap-3 align-items-center texts">
+              <span class="d-block">
+                {% if request.user.eth_wallet %}
+                  {{ request.user.eth_wallet }}
+                {% else %}
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                {% endif %}
+              </span>
+            </div>
+
+            <div style="display: none;" class="gap-3 inputs">
+              <input required name="eth" type="text" id="" class="form-control w-75" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="d-block">USDT Wallet</label>
+            <div style="display: flex;" class="gap-3 align-items-center texts">
+              <span class="d-block">
+                {% if request.user.usdt_wallet %}
+                  {{ request.user.usdt_wallet }}
+                {% else %}
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                {% endif %}
+              </span>
+            </div>
+
+            <div style="display: none;" class="gap-3 inputs">
+              <input required name="usdt" type="text" id="" class="form-control w-75" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="d-block">Litecoin Wallet</label>
+            <div style="display: flex;" class="gap-3 align-items-center texts">
+              <span class="d-block">
+                {% if request.user.ltc_wallet %}
+                  {{ request.user.ltc_wallet }}
+                {% else %}
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                {% endif %}
+              </span>
+            </div>
+
+            <div style="display: none;" class="gap-3 inputs">
+              <input required name="ltc" type="text" id="" class="form-control w-75" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="d-block">USDC Wallet</label>
+            <div style="display: flex;" class="gap-3 align-items-center texts">
+              <span class="d-block">
+                {% if request.user.usdc_wallet %}
+                  {{ request.user.usdc_wallet }}
+                {% else %}
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                {% endif %}
+              </span>
+            </div>
+
+            <div style="display: none;" class="gap-3 inputs">
+              <input required name="usdc" type="text" class="form-control w-75" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="d-block">DogeCoin Wallet</label>
+            <div style="display: flex;" class="gap-3 align-items-center texts">
+              <span class="d-block">
+                {% if request.user.doge_wallet %}
+                  {{ request.user.doge_wallet }}
+                {% else %}
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                {% endif %}
+              </span>
+            </div>
+
+            <div style="display: none;" class="gap-3 inputs">
+              <input required name="doge" type="text" id="" class="form-control w-75" />
+            </div>
+          </div>
+
+          <button style="display: none;" type="submit" id="formBtn" class="px-3 btn btn-primary mb-4">Submit</button>
+        </form>
+
+        <button style="display: none;" type="button" id="closeEdit" class="px-3 btn btn-secondary mb-4"><i class="bi bi-x"></i> Close</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const editBtn = document.getElementById('editBtn')
+    const closeBtn = document.getElementById('closeEdit')
+    const formBtn = document.getElementById('formBtn')
+    const inputs = document.querySelectorAll('.inputs')
+    const texts = document.querySelectorAll('.texts')
+    
+    editBtn.addEventListener('click', () => {
+      inputs.forEach((input) => {
+        input.style.display = 'flex'
+      })
+    
+      texts.forEach((text) => {
+        text.style.display = 'none'
+      })
+    
+      editBtn.style.display = 'none'
+      closeBtn.style.display = 'block'
+      formBtn.style.display = 'block'
+    })
+    
+    closeBtn.addEventListener('click', () => {
+      inputs.forEach((input) => {
+        input.style.display = 'none'
+      })
+    
+      texts.forEach((text) => {
+        text.style.display = 'flex'
+      })
+    
+      editBtn.style.display = 'block'
+      closeBtn.style.display = 'none'
+      formBtn.style.display = 'none'
+    })
+  </script>
+{% endblock %}
