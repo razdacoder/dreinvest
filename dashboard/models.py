@@ -99,10 +99,16 @@ class Transaction(models.Model):
     status = models.CharField(max_length=255, choices=STATUS, default="pending")
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.get_type_display()} Transaction made by {self.user.first_name} of ${self.amount} {self.asset}"
+
 
 class Proof(models.Model):
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
     file = models.FileField(upload_to="proofs/")
+
+    def __str__(self):
+        return f"Proof of {self.transaction.user.first_name} Transaction"
 
 
 class Investment(models.Model):
@@ -128,11 +134,16 @@ class Investment(models.Model):
     amount = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Investment of ${self.amount} for {self.get_plan_display()}"
+
 
 @receiver(post_save, sender=Transaction)
 def status_changed(sender, instance, created, **kwargs):
     if not created:
         obj = Transaction.objects.get(pk=instance.pk)
-        if obj.status == "sucessfull":
+        if obj.status == "sucessfull" and obj.type == "deposit":
             obj.user.wallet_balance += obj.amount
-            obj.user.save()
+        elif obj.status == "sucessfull" and obj.type == "withdraw":
+            obj.user.wallet_balance -= obj.amount
+        obj.user.save()

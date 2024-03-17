@@ -10,6 +10,8 @@ from django.conf import settings
 
 
 def sign_up(request):
+    if request.user.is_authenticated:
+        return redirect("dashboard_home")
     if request.method == "POST":
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
@@ -38,6 +40,8 @@ def sign_up(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("dashboard_home")
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
@@ -192,6 +196,8 @@ def investment_plan(request):
             user=request.user, plan=plan, amount=amount, asset=asset
         )
         investment.save()
+        request.user.wallet_balance -= amount
+        request.user.save()
         return redirect("investment")
     return render(
         request,

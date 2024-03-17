@@ -25,10 +25,10 @@
           <div class="d-flex align-items-center justify-content-center flex-column m-4">
             <h5>No Active investment</h5>
             <p>You currently do not have an active investment, kindly click the button below to get started.</p>
-            <a href="{% url 'investment_plan' %}" class="btn btn-primary">Start Investing</a>
           </div>
         {% endfor %}
       </tbody>
     </table>
+    <a href="{% url 'investment_plan' %}" class="btn btn-primary">Invest now</a>
   </main>
 {% endblock %}
