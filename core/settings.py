@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-%_pav2$pgrd1$i#5u!-&#-kr__@o#t(f#9%=$zy4)u86nfgnh-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://dreinvest.onrender.com",
+    "dreinvest.onrender.com",
 ]
 
 
