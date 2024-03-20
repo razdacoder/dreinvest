@@ -2,7 +2,7 @@
 
 {% block content %}
   <section class="section">
-    <div class="container w-25">
+    <div class="container md-w-25">
       <div class="row justify-content-center">
         <div class="col-12">
           <div class="section-title text-center mb-5 pb-2">
@@ -39,7 +39,7 @@
                 <input type="password" required name="password2" class="form-control shadow-none" id="contact_name" />
               </div>
             </div>
-            <div class="form-check mb-4 col-6">
+            <div class="form-check mb-4 w-100 col-6">
               <input type="checkbox" required name="agree" class="form-check-input shadow-none" id="contact_name" />
               <label for="exampleFormControlInput1" class="form-check-label">I agree to Wallet <a href="{% url 'terms' %}">Terms & Conditions</a> and <a href="{% url 'policy' %}">Privacy Policy</a></label>
             </div>

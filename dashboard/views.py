@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models import F
+
 from .models import User, Transaction, Proof, Investment
 from django.db.models import Sum
 from django.conf import settings
@@ -257,3 +262,20 @@ def add_wallet(request):
         messages.success(request, "Wallet Address Updated")
         return redirect("addWallet")
     return render(request, "dashboard/core/add_wallet.html")
+
+
+def cron(request):
+    # Get investments older than 14 days
+    threshold_date = timezone.now() - timedelta(days=14)
+    recent_investments = Investment.objects.filter(created_at__gte=threshold_date)
+
+    for investment in recent_investments:
+        print(investment.user.email)
+        # Calculate 20% of the investment amount
+        bonus_amount = investment.amount * 0.20
+
+        # Update the user's wallet balance
+        investment.user.wallet_balance = F("wallet_balance") + bonus_amount
+        investment.user.save()
+
+    return HttpResponse("Wallet balances updated successfully.")
