@@ -19,5 +19,5 @@ urlpatterns = [
     path("investment-plan/", views.investment_plan, name="investment_plan"),
     path("transactions/", views.transactions, name="transactions"),
     path("addWallet/", views.add_wallet, name="addWallet"),
-    path("cron", views.cron, name="cron"),
+    # path("cron", views.cron, name="cron"),
 ]
