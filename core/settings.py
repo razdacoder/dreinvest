@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-%_pav2$pgrd1$i#5u!-&#-kr__@o#t(f#9%=$zy4)u86nfgnh-"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -46,13 +46,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# CRONJOBS = [
-#     ("0 0 * * *", "dashboard.tasks.update_wallet_balance", ">> /tmp/cron_job.log 2>&1"),
-# ]
-
 CRONJOBS = [
-    ("* * * * *", "dashboard.tasks.update_wallet_balance", ">> /tmp/cron_job.log 2>&1"),
+    ("0 0 * * *", "dashboard.tasks.update_wallet_balance", ">> /tmp/cron_job.log 2>&1"),
 ]
+
+# CRONJOBS = [
+#     ("* * * * *", "dashboard.tasks.update_wallet_balance", ">> /tmp/cron_job.log 2>&1"),
+# ]
 
 
 ROOT_URLCONF = "core.urls"
