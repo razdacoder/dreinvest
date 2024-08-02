@@ -13,7 +13,8 @@ SECRET_KEY = "django-insecure-%_pav2$pgrd1$i#5u!-&#-kr__@o#t(f#9%=$zy4)u86nfgnh-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "dreinvest.onrender.com", "gadextrade.com", ".vercel.app"]
+ALLOWED_HOSTS = ["localhost", "dreinvest.onrender.com",
+                 "gadextrade.com", ".vercel.app"]
 
 
 # Application definition
@@ -137,10 +138,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 WALLETS = {
-    "BTC": "bc1qjxlamlxenscfkqqxpkdr4dyclc5cfcnvc8qj23",
-    "ETH": "0xAF35159dbf11D7c69be0165DaBA9dF3884C99e3c",
-    "USDT": "0xAF35159dbf11D7c69be0165DaBA9dF3884C99e3c",
-    "LTC": "ltc1qj5xzpl3ppr7yyydwtert3mkv589yvjyh4q7gmc",
-    "USDC": "fxghg",
-    "DOGE": "DQSfKRRs1wykWNjstq7kgbePi1VPnbFfKF",
+    "BTC": "bc1q05jk8jph74vg4399tl42hp0emlssd3xwka838l",
+    "ETH": "0x55aFbeCa078e2f673BC22b8Eb9E89e5340729E06",
+    "USDT": "0x55aFbeCa078e2f673BC22b8Eb9E89e5340729E06",
+    "LTC": "ltc1qp9gesu59h5sezr0gm7ndzngx6u4xws8mczamg2",
+    "USDC": "OxLKCi1YuUg1MmgfhiWN6H6J6Vke5TSH8F",
+    "DOGE": "D6LKCi1YuUg1MmgfhiWN6H6J6Vke5TSH8B",
 }
